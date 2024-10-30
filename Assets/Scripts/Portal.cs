@@ -22,8 +22,6 @@ public class Portal : MonoBehaviour
 
         Vector3 playerOffsetPosition = transform.InverseTransformPoint(playerTransform.position); // Get local position in reference to this portal
 
-        Debug.Log(playerOffsetPosition);
-
         if (playerOffsetPosition.z > 0) // Check for difference. Negative difference indicates player has crossed portal and teleportation should occur
         {
             return;
@@ -36,7 +34,7 @@ public class Portal : MonoBehaviour
 
         Vector3 teleportPosition = linkedPortal.TransformPoint(mirroredPlayerOffset); // From calculated local position, now calculate world position in reference to linked portal
 
-        Debug.Log("Teleporting to : " + teleportPosition);
+        //Debug.Log("Teleporting to : " + teleportPosition);
 
         playerTransform.position = teleportPosition; // Teleport player
         

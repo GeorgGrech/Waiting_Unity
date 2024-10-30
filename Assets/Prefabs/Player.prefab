@@ -246,7 +246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraTransform: {fileID: 9182495227121209116}
-  movementSpeed: 700
+  movementSpeed: 800
   lookSens: 100
   cameraTopClampAngle: 90
   cameraBottomClampAngle: 85
@@ -317,7 +317,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 75
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
