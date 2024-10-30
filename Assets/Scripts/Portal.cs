@@ -13,12 +13,6 @@ public class Portal : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     private void OnTriggerStay(Collider other) // For efficiency, Portal is only functional when collision detected
     {
         if (other.CompareTag("Player") == false) // Only do if collision is player
