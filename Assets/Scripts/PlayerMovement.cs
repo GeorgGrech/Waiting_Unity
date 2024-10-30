@@ -52,11 +52,10 @@ public class PlayerMovement : MonoBehaviour
         Vector2 lerpInputVals = Vector2.Lerp(lastInputVals, inputVal, acceleration * Time.deltaTime); //Interpolate input Values to create acceleration/decelaration
 
         lastInputVals = lerpInputVals;
-        Debug.Log(lerpInputVals);
 
         Vector3 move = new (
             lerpInputVals.x * movementSpeed * Time.deltaTime,
-            0, // To do: Account for gravity.
+            Physics.gravity.y * Time.deltaTime, // Account for gravity
             lerpInputVals.y * movementSpeed * Time.deltaTime);
         move = transform.TransformDirection(move);
 
