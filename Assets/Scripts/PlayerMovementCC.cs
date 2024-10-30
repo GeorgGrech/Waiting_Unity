@@ -1,13 +1,12 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
-using UnityEngine.TextCore.Text;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementCC : MonoBehaviour
 {
-    private Rigidbody rb;
+    private CharacterController character;
     private PlayerInput input;
     private InputAction moveAction;
     private InputAction lookAction;
@@ -15,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Transform cameraTransform;
 
     [SerializeField] private float movementSpeed;
+    [SerializeField] private float acceleration;
 
     [SerializeField] private float lookSens;
 
@@ -23,53 +23,46 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float cameraTopClampAngle;
     [SerializeField] float cameraBottomClampAngle;
 
-    Vector2 inputVal;
-
-    //Vector2 lastInputVals; // Used for acceleration/decelaration
-
+    Vector2 lastInputVals; // Used for acceleration/decelaration
+     
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        character = GetComponent<CharacterController>();
         input = GetComponent<PlayerInput>();
 
         moveAction = input.actions.FindAction("Move");
         lookAction = input.actions.FindAction("Look");
 
         Cursor.visible = false; // Hide cursor
+
     }
 
-    void Update()
+    // Update is called once per frame
+    void Update() //Keep in Update or move to FixedUpdate?
     {
-        PlayerInput();
+        PlayerMove();
         PlayerLook();
     }
 
-    private void FixedUpdate()
+    void PlayerMove()
     {
-        PlayerMove();
-    }
+        Vector2 inputVal = moveAction.ReadValue<Vector2>();
 
-    void PlayerInput()
-    {
-        inputVal = moveAction.ReadValue<Vector2>();
-    }
+        Vector2 lerpInputVals = Vector2.Lerp(lastInputVals, inputVal, acceleration * Time.deltaTime); //Interpolate input Values to create acceleration/decelaration
 
-    private void PlayerMove()
-    {
+        lastInputVals = lerpInputVals;
 
-        /*Vector2 lerpInputVals = Vector2.Lerp(lastInputVals, inputVal, acceleration * Time.deltaTime); //Interpolate input Values to create acceleration/decelaration
-
-        lastInputVals = lerpInputVals;*/
-
-        Vector3 move = new(
-            inputVal.x,
-            0,
-            inputVal.y);
+        Vector3 move = new (
+            lerpInputVals.x * movementSpeed * Time.deltaTime,
+            Physics.gravity.y * Time.deltaTime, // Account for gravity
+            lerpInputVals.y * movementSpeed * Time.deltaTime);
         move = transform.TransformDirection(move);
 
-        rb.AddForce(movementSpeed * Time.fixedDeltaTime * move);
+        character.Move(move);
+
     }
+
 
     void PlayerLook()
     {
@@ -87,4 +80,5 @@ public class PlayerMovement : MonoBehaviour
         xRotation = Mathf.Clamp(xRotation, -cameraBottomClampAngle, cameraTopClampAngle); //Clamp camera rotation
         cameraTransform.localRotation = Quaternion.Euler(xRotation, 0, 0); // Rotate camera around x axis
     }
+    
 }
