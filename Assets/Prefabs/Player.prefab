@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 7012153596461272742}
   - component: {fileID: 2700412345877948042}
   - component: {fileID: 9184587390556548263}
+  - component: {fileID: 3013037409035399212}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -250,6 +251,19 @@ MonoBehaviour:
   lookSens: 100
   cameraTopClampAngle: 90
   cameraBottomClampAngle: 85
+--- !u!114 &3013037409035399212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 810457761593476018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf5f19b46486cb746ac2a0ba7cea3ef3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactDistance: 2
 --- !u!1 &4422693995666913233
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +278,7 @@ GameObject:
   - component: {fileID: 185424477999012699}
   m_Layer: 0
   m_Name: Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
