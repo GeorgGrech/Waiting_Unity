@@ -10,6 +10,8 @@ public class PlayerInteract : MonoBehaviour
     private Camera mainCam;
 
     [SerializeField] private float interactDistance; // Distance player can interact with objects
+
+    [SerializeField] private Transform currentObservedObject;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,19 +29,27 @@ public class PlayerInteract : MonoBehaviour
         Ray ray = new(mainCam.transform.position, mainCam.transform.forward); // In front of camera
         bool hit = Physics.Raycast(ray, out RaycastHit hitInfo, interactDistance); // If object within distance
 
-        if (!hit) return; // Nothing hit
-
-        if (!interactAction.WasPressedThisFrame()) // Interaction possible but interact action not pressed
+        if (!hit || !hitInfo.transform.CompareTag("Interactable")) // No object hit or object hit is not interactable
         {
-            hitInfo.transform.gameObject.SendMessage("AwaitInteraction", SendMessageOptions.DontRequireReceiver); // Find object's corresponding AwaitInteraction method
+            if(currentObservedObject) currentObservedObject.gameObject.SendMessage("CancelAwaitInteraction", SendMessageOptions.DontRequireReceiver); // Object is no longer observed. Cancel interaction message
+            currentObservedObject = null; // "Forget" the object previously observed
             return;
         }
 
-        if (interactAction.WasPressedThisFrame()) // Interaction possible and interact action pressed
+        // Interaction possible and interact action pressed
+        if (interactAction.WasPressedThisFrame())
         {
             hitInfo.transform.gameObject.SendMessage("Interact", SendMessageOptions.DontRequireReceiver); // Find object's corresponding Interact method
-            return;
         }
 
+        // If interact action has not been pressed, check if this is previously observed object to avoid duplicate AwaitInteraction Method
+
+        if (currentObservedObject == hitInfo.transform) return; // Object has been previously observed. Ignore.
+
+        currentObservedObject = hitInfo.transform;
+
+        currentObservedObject.gameObject.SendMessage("AwaitInteraction", SendMessageOptions.DontRequireReceiver); // Find object's corresponding AwaitInteraction method
+
+        //return;
     }
 }
