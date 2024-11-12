@@ -640,10 +640,35 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 440539079692260768, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 614278521828023836, guid: e6646844b9ddf4a4c9f83bea58e9e845,
         type: 3}
       propertyPath: m_Name
       value: Scene
+      objectReference: {fileID: 0}
+    - target: {fileID: 707693053431837977, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 707693053431837977, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 707693053431837977, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 2832622175896558433, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2970200826004901476, guid: e6646844b9ddf4a4c9f83bea58e9e845,
         type: 3}
@@ -699,6 +724,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5068832639677519165, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7424880281966550012, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549538925275511621, guid: e6646844b9ddf4a4c9f83bea58e9e845,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
