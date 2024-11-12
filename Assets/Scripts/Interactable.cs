@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+public abstract class Interactable : MonoBehaviour
 {
-    [SerializeField] protected string interactMessage;
+    [SerializeField] protected GameObject messageCanvas;
     [SerializeField] protected bool awaitingInteraction;
 
     // Start is called before the first frame update
@@ -22,11 +22,13 @@ public class Interactable : MonoBehaviour
     protected void AwaitInteraction()
     {
         Debug.Log("Player may interact");
+        messageCanvas.SetActive(true);
     }
 
     protected void CancelAwaitInteraction()
     {
         Debug.Log("Player may no longer interact");
+        messageCanvas.SetActive(false);
     }
 
     protected void Interact()
