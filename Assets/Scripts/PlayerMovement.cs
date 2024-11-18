@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Transform cameraTransform;
 
-    [SerializeField] private float movementSpeed;
+    [SerializeField] private float movementForce;
 
     [SerializeField] private float lookSens;
 
@@ -68,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             inputVal.y);
         move = transform.TransformDirection(move);
 
-        rb.AddForce(movementSpeed * Time.fixedDeltaTime * move);
+        rb.AddForce(movementForce * Time.fixedDeltaTime * move);
     }
 
     void PlayerLook()
